@@ -637,19 +637,6 @@ router.get("/gallery", (req, res) => {
 });
 
 
-// router.post('/gallery', upload.single('image'), (req, res) => {
-//     const { about } = req.body;
-//     const imagePath = req.file.path;
-
-//     con.query('INSERT INTO gallery (image_path, about) VALUES (?, ?)', [imagePath, about], (err, result) => {
-//         if (err) {
-//             console.error('Error inserting into gallery:', err);
-//             res.status(500).json({ error: 'An error occurred' });
-//             return;
-//         }
-//         res.json({ message: 'Image uploaded successfully' });
-//     });
-// });
 
 router.delete('/gallery/:id', (req, res) => {
     const id = req.params.id;
@@ -920,23 +907,6 @@ const getAllStudentEmails = () => {
       if (err) {
         console.error('Error executing SQL query:', err);
         return res.status(500).json({ error: 'Database Error' });
-      }
-  
-      try {
-        const emails = await getAllStudentEmails();
-        const subject = `New Job Posted: ${job_title}`;
-        const html = `A new job has been posted:<br><br>Company: ${company}<br>Title: ${job_title}<br>Location: ${location}<br>Description: ${description}`;
-  
-        await Promise.all(emails.map(email => sendEmail(email, subject, html)));
-  
-        return res.json({ message: 'New job added successfully and emails sent', jobId: result.insertId });
-      } catch (error) {
-        console.error('Error fetching emails or sending email:', error);
-        if (error.code === 'ENOTFOUND' || error.code === 'EAI_AGAIN') {
-          return res.status(500).json({ error: 'Network Error: Unable to send emails' });
-        } else {
-          return res.status(500).json({ error: 'Error sending emails' });
-        }
       }
     });
   });

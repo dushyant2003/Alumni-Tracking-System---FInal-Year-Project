@@ -6,9 +6,9 @@ dotenv.config();
 
 const con = mysql.createConnection({
     host: "localhost",
-    user: "root",
-    password: "mysql",
-    database: "alumni",
+    user: "root",           // your mysql user name
+    password: "mysql",      // your mysql password
+    database: "alumni_database",     // name of database.
 })
 
 con.connect((err) => {

@@ -49,7 +49,7 @@ const ManageJobs = ({ setHandleAdd }) => {
 
     setLoading(true);  // Show loader
     if (!toastId.current) {
-      toastId.current = toast('📧 Sending emails, please wait...', {
+      toastId.current = toast('Job posted successfully', {
         position: "top-center",
         autoClose: false,
         hideProgressBar: true,
